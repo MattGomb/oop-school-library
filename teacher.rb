@@ -1,4 +1,4 @@
-require './person'
+require_relative './person'
 
 # teacher class derived from person
 class Teacher < Person

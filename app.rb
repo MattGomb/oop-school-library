@@ -7,6 +7,13 @@ require_relative './teacher'
 #class to have basic UI
 class App
   def list_books
+    if Book.all.empty?
+      puts 'There are no books in the database yet!'
+    else
+      Book.all.each do |book|
+        puts 'Title: #{book.title}, Author: #{book.author}'
+      end
+    end
   end
 
   def list_people

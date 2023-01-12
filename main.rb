@@ -39,6 +39,7 @@ class Main
     case input
     when 1..6
       @app.send(selection[input])
+      run
     when 7
       puts 'Thank you for using this app!'
     else

@@ -35,6 +35,9 @@ class Person < Nameable
   def of_age?
     @age >= 18
   end
-
   private :of_age?
+
+  def self.all
+    ObjectSpace.each_object(self).to_a
+  end
 end

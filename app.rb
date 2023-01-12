@@ -20,10 +20,10 @@ class App
     if Student.all.empty? && Teacher.all.empty?
       puts 'There are no people in the database yet!'
     else
-      Student.all.each do |_student|
+      Student.all.each do |student|
         puts "[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
       end
-      Teacher.all.each do |_teacher|
+      Teacher.all.each do |teacher|
         puts "[Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}"
       end
     end
@@ -48,12 +48,12 @@ class App
           print 'Has parent permission? [Y/N]: '
           permission = gets.chomp
         end
-        Student.new(age, classroom, name: name, parent_permission: permission)
+        Student.new(age, classroom, name, parent_permission: permission)
         puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '
         specialization = gets.chomp
-        Teacher.new(age, specialization, name:)
+        Teacher.new(age, specialization, name)
         puts 'Teacher added to the database successfully!'
       end
     else

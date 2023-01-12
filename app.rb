@@ -4,14 +4,14 @@ require_relative './rental'
 require_relative './student'
 require_relative './teacher'
 
-#class to have basic UI
+# class to have basic UI
 class App
   def list_books
     if Book.all.empty?
       puts 'There are no books in the database yet!'
     else
-      Book.all.each do |book|
-        puts 'Title: #{book.title}, Author: #{book.author}'
+      Book.all.each do |_book|
+        puts "Title: #{book.title}, Author: #{book.author}"
       end
     end
   end
@@ -20,11 +20,11 @@ class App
     if Student.all.empty? && Teacher.all.empty?
       puts 'There are no people in the database yet!'
     else
-      Student.all.each do |student|
-        puts '[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}'
+      Student.all.each do |_student|
+        puts "[Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age}"
       end
-      Teacher.all.each do |teacher|
-        puts '[Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}'
+      Teacher.all.each do |_teacher|
+        puts "[Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age}"
       end
     end
   end
@@ -32,33 +32,33 @@ class App
   def create_person
     print 'Do you want to create a student (1) or a Teacher (2)? [Input the number]: '
     select = gets.chomp.to_i
-    if[1, 2].include?(select)
+    if [1, 2].include?(select)
       print 'Age: '
       age = gets.chomp
       print 'Name: '
       name = gets.chomp
       case select
-      when 1 
+      when 1
         print 'Classroom: '
         classroom = gets.chomp
         print 'Has parent permission? [Y/N]: '
         permission = gets.chomp
-        unless permission == 'Y' || 'N' || 'y' || 'n'
+        unless %w[Y N y n].include?(permission)
           puts 'Invalid input, please write Y or N'
           print 'Has parent permission? [Y/N]: '
           permission = gets.chomp
         end
-        Student.new(age, classroom, name: name, parent_permission: permission)
+        Student.new(age, classroom, name:, parent_permission: permission)
         puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '
         specialization = gets.chomp
-        Teacher.new(age, specialization, name: name)
+        Teacher.new(age, specialization, name:)
         puts 'Teacher added to the database successfully!'
       end
     else
       puts 'Invalid option, please type 1 or 2'
-      return
+      nil
     end
   end
 
@@ -94,7 +94,7 @@ class App
       puts 'Rental added to the database successfully!'
     end
   end
-  
+
   def list_rentals
     if Person.all.empty? || Book.all.empty?
       puts 'Please add a person and a book to the rental database first!'
@@ -111,4 +111,3 @@ class App
     end
   end
 end
- 

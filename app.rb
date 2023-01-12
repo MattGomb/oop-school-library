@@ -48,7 +48,7 @@ class App
           print 'Has parent permission? [Y/N]: '
           permission = gets.chomp
         end
-        Student.new(age, classroom, name:, parent_permission: permission)
+        Student.new(age, classroom, name: name, parent_permission: permission)
         puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '

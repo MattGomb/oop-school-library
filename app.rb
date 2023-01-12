@@ -63,6 +63,12 @@ class App
   end
 
   def create_book
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    Book.new(title, author)
+    puts 'Book added successfully!'
   end
 
   def create_rental

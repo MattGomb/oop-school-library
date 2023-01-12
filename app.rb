@@ -87,7 +87,7 @@ class App
         puts %(#{index}\) [Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age})
       end
       selected_person = gets.chomp.to_i
-      print 'Date: '
+      print 'Date [dd/mm/yyyy]: '
       date = gets.chomp
       Rental.new(date, Book.all[selected_book], Person.all[selected_person])
       puts 'Rental added to the database successfully!'
@@ -108,5 +108,6 @@ class App
         end
       end
     end
+    run
   end
 end

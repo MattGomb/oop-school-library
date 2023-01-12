@@ -94,5 +94,21 @@ class App
       puts 'Rental added to the database successfully!'
     end
   end
+  
+  def list_rentals
+    if Person.all.empty? || Book.all.empty?
+      puts 'Please add a person and a book to the rental database first!'
+    else
+      print 'ID of person: '
+      selected_id = gets.chomp.to_i
+      Rental.all.each do |rental|
+        if rental.person.id == selected_id
+          puts %(Date: #{rental.date}, Book: #{rental.book.title} by #{rental.book.author})
+        else
+          puts 'No rentals found for that ID!'
+        end
+      end
+    end
+  end
 end
  

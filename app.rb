@@ -10,7 +10,7 @@ class App
     if Book.all.empty?
       puts 'There are no books in the database yet!'
     else
-      Book.all.each do |_book|
+      Book.all.each do |book|
         puts "Title: #{book.title}, Author: #{book.author}"
       end
     end
@@ -46,14 +46,13 @@ class App
         unless %w[Y N y n].include?(permission)
           puts 'Invalid input, please write Y or N'
           print 'Has parent permission? [Y/N]: '
-          permission = gets.chomp
         end
-        Student.new(age, classroom, name, parent_permission: permission)
+        Student.new(age, classroom, name: name, parent_permission: permission)
         puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '
         specialization = gets.chomp
-        Teacher.new(age, specialization, name)
+        Teacher.new(age, specialization, name: name)
         puts 'Teacher added to the database successfully!'
       end
     else

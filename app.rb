@@ -49,15 +49,15 @@ class App
           permission = gets.chomp
         end
         Student.new(age, classroom, name: name, parent_permission: permission)
-        puts 'Student added successfully!'
+        puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '
         specialization = gets.chomp
         Teacher.new(age, specialization, name: name)
-        puts 'Teacher added successfully!'
+        puts 'Teacher added to the database successfully!'
       end
     else
-      puts 'Invalid option'
+      puts 'Invalid option, please type 1 or 2'
       return
     end
   end
@@ -68,13 +68,31 @@ class App
     print 'Author: '
     author = gets.chomp
     Book.new(title, author)
-    puts 'Book added successfully!'
+    puts 'Book added to the database successfully!'
   end
 
   def create_rental
-  end
-
-  def list_rentals
+    if Book.all.empty? || Person.all.empty?
+      puts 'There are no books or people in the database yet!'
+    else
+      puts 'Select a book from the following list by number:'
+      Book.all.each_with_index do |book, index|
+        puts %(#{index}\) Title: #{book.title}, Author: #{book.author})
+      end
+      selected_book = gets.chomp.to_i
+      puts 'Select a person from the following list by number (not ID):'
+      Student.all.each_with_index do |student, index|
+        puts %(#{index}\) [Student] Name: #{student.name}, ID: #{student.id}, Age: #{student.age})
+      end
+      Teacher.all.each_with_index do |teacher, index|
+        puts %(#{index}\) [Teacher] Name: #{teacher.name}, ID: #{teacher.id}, Age: #{teacher.age})
+      end
+      selected_person = gets.chomp.to_i
+      print 'Date: '
+      date = gets.chomp
+      Rental.new(date, Book.all[selected_book], Person.all[selected_person])
+      puts 'Rental added to the database successfully!'
+    end
   end
 end
  

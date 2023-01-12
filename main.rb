@@ -22,7 +22,7 @@ class Main
   end
 
   def run
-    puts @interface.Interface
+    puts @interface.interface
     input = gets.chomp.to_i
     options(input)
   end

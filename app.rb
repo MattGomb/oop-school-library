@@ -47,12 +47,12 @@ class App
           puts 'Invalid input, please write Y or N'
           print 'Has parent permission? [Y/N]: '
         end
-        Student.new(age, classroom, name:, parent_permission: permission)
+        Student.new(age, classroom, name: name, parent_permission: permission)
         puts 'Student added the database successfully!'
       when 2
         print 'Specialization: '
         specialization = gets.chomp
-        Teacher.new(age, specialization, name:)
+        Teacher.new(age, specialization, name: name)
         puts 'Teacher added to the database successfully!'
       end
     else
@@ -89,7 +89,7 @@ class App
       selected_person = gets.chomp.to_i
       print 'Date [dd/mm/yyyy]: '
       date = gets.chomp
-      Rental.new(date, Book.all[selected_book], Person.all[selected_person])
+      Rental.new(date, Person.all[selected_person], Book.all[selected_book])
       puts 'Rental added to the database successfully!'
     end
   end
@@ -108,6 +108,5 @@ class App
         end
       end
     end
-    run
   end
 end

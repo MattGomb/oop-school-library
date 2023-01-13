@@ -14,7 +14,6 @@ class Person < Nameable
     @rentals = []
   end
 
-  
   def can_use_services?
     case of_age? || @parent_permission
     when true
@@ -23,21 +22,21 @@ class Person < Nameable
       false
     end
   end
-  
+
   def correct_name
     @name
   end
-  
+
   def of_age?
     @age >= 18
   end
   private :of_age?
-  
+
   def add_rental(rental)
     @rentals.push(rental)
     rental.person = self
   end
-  
+
   def self.all
     ObjectSpace.each_object(self).to_a
   end
